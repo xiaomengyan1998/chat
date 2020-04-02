@@ -4,6 +4,7 @@ const express = require("express");
 require("express-async-errors");
 // 引入路由中间件文件
 const indexRouter = require("./routers/indexRouter");
+const userRouter = require("./routers/userRouter");
 // 生成 express 实例
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // 处理路由中间件
 app.use("/", indexRouter);
+app.use("/users", userRouter);
 
 // 统一处理错误，需要放置在中间件与路由代码之后
 app.use((err, req, res, next) => {
