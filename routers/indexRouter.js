@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 
 // GET /chatroom 聊天室页面
 router.get("/chatroom", auth, (req, res) => {
-  res.render("chatroom");
+  res.render("chatroom", { username: req.auth.username });
 });
 
 // GET /posts 帖子列表页面
