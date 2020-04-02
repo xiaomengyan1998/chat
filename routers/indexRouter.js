@@ -14,9 +14,16 @@ router.get("/chatroom", auth, (req, res) => {
   res.render("chatroom");
 });
 
+// GET /posts 帖子列表页面
+router.get("/posts", auth, (req, res) => {
+  res.render("post/index");
+});
+
 // GET /login 登录页面
 router.get("/login", (req, res) => {
-  res.render("login");
+  // 可以获取 ？号传参
+  const redirect = req.query.redirect || "/";
+  res.render("login", { redirect });
 });
 
 module.exports = router;

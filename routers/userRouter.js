@@ -24,7 +24,14 @@ router.post("/login", async (req, res) => {
       userId: user._id,
       username: user.username
     };
-    res.send("登录成功");
+
+    // 从 req.session.redirect 中获取要回到的页面地址, 如果获取不到，默认打回首页
+    // let redirect = req.session.redirect || "/";
+    // // 跳转
+    // res.redirect(redirect);
+
+    // console.log(req.originalUrl);
+    res.redirect(req.query.redirect);
   } else {
     // 不通过，用户名或密码不正确
     throw new Error("用户名或密码不正确");
