@@ -1,5 +1,7 @@
 // 引入 express
 const express = require("express");
+// 引入 express-session 中间件模块
+const session = require("express-session");
 // 引入 express-async-errors
 require("express-async-errors");
 // 引入路由中间件文件
@@ -17,6 +19,22 @@ app.use(express.static("./public"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+/**
+ * session 处理
+ * 会给 req 对象上添加一个 session 的属性
+ * 注意：在开发工程中，修改了代码，session 就会重新开始
+ */
+app.use(
+  session({
+    // 秘钥
+    secret: "asdfasdfaasdf23rfdsfasdfasdf",
+    // 是否每次有请求的时候都去更新有效时间
+    resave: false,
+    // 是否初始化时就设置一次
+    saveUninitialized: true
+  })
+);
 
 // 处理路由中间件
 app.use("/", indexRouter);
