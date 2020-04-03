@@ -56,7 +56,7 @@
     $(function () {
 
       // 建立socketio的连接
-      const socket = io('http://localhost:3000')
+      const socket = io()
 
       // 触发 setName 这个事件
       // 不能写死名字，需要如何获取到当前登录的用户的username呢
